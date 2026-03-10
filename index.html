@@ -20,7 +20,7 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #0b1120, #111827 40%, #0f172a 100%);
+      background: radial-gradient(circle at top, rgba(239, 68, 68, 0.12), transparent 28%), linear-gradient(180deg, #05070d, #0a0f1a 35%, #0b0f18 100%);
       color: var(--text);
     }
 
@@ -73,6 +73,16 @@
     .hero {
       padding: 72px 0 48px;
       text-align: center;
+      position: relative;
+    }
+
+    .hero-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      margin: 0 auto 18px;
+      display: block;
+      filter: drop-shadow(0 0 18px rgba(239, 68, 68, 0.35));
     }
 
     .badge {
@@ -109,11 +119,11 @@
     }
 
     .count-box {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(17,24,39,0.95), rgba(10,15,26,0.95));
+      border: 1px solid rgba(239, 68, 68, 0.22);
       border-radius: 22px;
       padding: 18px 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 0 0 1px rgba(239,68,68,0.08), 0 10px 30px rgba(0,0,0,0.35), 0 0 24px rgba(239,68,68,0.08);
     }
 
     .count-number {
@@ -181,11 +191,18 @@
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(17,24,39,0.94), rgba(10,15,26,0.94));
+      border: 1px solid rgba(239, 68, 68, 0.16);
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(239, 68, 68, 0.45);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35), 0 0 28px rgba(239,68,68,0.12);
     }
 
     .card-body {
@@ -197,11 +214,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #14532d, #1e293b);
-      color: #d1fae5;
+      background: linear-gradient(135deg, #2a0d12, #131a2b);
+      color: #fecaca;
       font-weight: 700;
       text-align: center;
       padding: 12px;
+    }
+
+    .gallery-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+
+    .card:hover .gallery-img {
+      transform: scale(1.04);
+      filter: brightness(1.06);
     }
 
     .timeline {
@@ -257,6 +287,7 @@
   <main>
     <section class="hero" id="home">
       <div class="container">
+        <img class="hero-logo" src="images/logo.png" alt="DarkShadow Logo">
         <div class="badge">Minecraft Bedrock Realm Community</div>
         <h1>DarkShadow SMP</h1>
         <p class="subtitle">
@@ -307,22 +338,28 @@
         </p>
         <div class="grid">
           <div class="card">
-            <div class="card-body">
-              <h3>Founded</h3>
-              <p class="muted">Founded on November 19th 2023 and shaped through multiple seasons.</p>
-            </div>
+            <img class="gallery-img" src="images/dev-hub.png" alt="Development screenshot of an old season hub build">
+            <div class="card-body"><strong>Development Era</strong><p class="muted">An older season while a warp hub was still being built during development.</p></div>
           </div>
           <div class="card">
-            <div class="card-body">
-              <h3>Community</h3>
-              <p class="muted">DarkShadow SMP has had real player activity, community memories, and evolving builds.</p>
-            </div>
+            <img class="gallery-img" src="images/best-spawn.png" alt="One of DarkShadow SMP's most loved old spawns">
+            <div class="card-body"><strong>Classic Spawn</strong><p class="muted">One of the most remembered old spawns, seen by many as the best season.</p></div>
           </div>
           <div class="card">
-            <div class="card-body">
-              <h3>Upcoming Season</h3>
-              <p class="muted">A brand new season is being prepared after the previous one closed due to bugs and busy lives.</p>
-            </div>
+            <img class="gallery-img" src="images/old-spawn-2.png" alt="Another older DarkShadow SMP spawn">
+            <div class="card-body"><strong>Another Era</strong><p class="muted">A different old spawn showing how the realm changed between seasons.</p></div>
+          </div>
+          <div class="card">
+            <img class="gallery-img" src="images/community.png" alt="Vmp in spawn with players in the background">
+            <div class="card-body"><strong>Community Moments</strong><p class="muted">Vmp at spawn while players were active in the background.</p></div>
+          </div>
+          <div class="card">
+            <img class="gallery-img" src="images/recent-season.png" alt="The most recently published DarkShadow SMP season">
+            <div class="card-body"><strong>Most Recent Season</strong><p class="muted">The latest published season, which later had to close due to bugs and busy lives.</p></div>
+          </div>
+          <div class="card">
+            <img class="gallery-img" src="images/upcoming-spawn.png" alt="Sneak peek of the upcoming spawn">
+            <div class="card-body"><strong>Upcoming Spawn</strong><p class="muted">A sneak peek of the spawn for the next season now being prepared.</p></div>
           </div>
         </div>
       </div>
@@ -332,7 +369,7 @@
       <div class="container">
         <h2>Gallery</h2>
         <p class="lead">
-          Replace these placeholders with screenshots from your server, builds, spawn, warzone, or old realm moments.
+          A look through DarkShadow SMP's history, development, community moments, the most recent season, and a sneak peek at what comes next.
         </p>
         <div class="grid">
           <div class="card">
