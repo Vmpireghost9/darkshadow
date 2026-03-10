@@ -257,6 +257,71 @@
     .timeline-item strong { color: white; }
     .muted { color: var(--muted); }
 
+    .owners-section {
+      padding: 34px 0 20px;
+    }
+
+    .owners-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .owners-underline {
+      width: 180px;
+      height: 2px;
+      margin: 0 auto 28px;
+      background: linear-gradient(90deg, transparent, rgba(239,68,68,0.9), transparent);
+    }
+
+    .owner-card {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 0;
+      background: linear-gradient(180deg, rgba(17,24,39,0.94), rgba(10,15,26,0.94));
+      border: 1px solid rgba(239, 68, 68, 0.16);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      margin-bottom: 26px;
+    }
+
+    .owner-info {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .owner-role {
+      color: #3ba7ff;
+      font-weight: 800;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .owner-name {
+      color: white;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .owner-text {
+      color: #f1b4b4;
+      line-height: 1.7;
+      font-size: 1.05rem;
+      max-width: 520px;
+    }
+
+    .owner-image {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
     footer {
       padding: 34px 0 50px;
       color: var(--muted);
@@ -266,6 +331,8 @@
     @media (max-width: 900px) {
       .grid { grid-template-columns: 1fr; }
       .countdown { grid-template-columns: repeat(2, minmax(80px, 140px)); }
+      .owner-card { grid-template-columns: 1fr; }
+      .owner-image { min-height: 260px; }
     }
 
     @media (max-width: 560px) {
@@ -334,6 +401,35 @@
           <div class="timeline-item">
             <strong>Recent Era</strong><br>The most recently released season had to close because of bugs and busy lives, but a brand new season is now being prepared.
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="owners-section" id="owners">
+      <div class="container">
+        <h2 class="owners-title">The people behind DarkShadow SMP</h2>
+        <div class="owners-underline"></div>
+
+        <div class="owner-card">
+          <div class="owner-info">
+            <div class="owner-role">[Co-Owner]</div>
+            <div class="owner-name">Vmpireghost9 (Vmp)</div>
+            <div class="owner-text">
+              Hi, I'm Vmp. I co-founded DarkShadow SMP on November 19th 2023 and continue to co-own and help run the realm. From shaping seasons and planning new ideas to building the community side of the server, I'm one of the people behind DarkShadow SMP's direction and identity.
+            </div>
+          </div>
+          <img class="owner-image" src="images/logo2.png" alt="DarkShadow SMP logo representing Vmpireghost9">
+        </div>
+
+        <div class="owner-card">
+          <div class="owner-info">
+            <div class="owner-role">[Co-Owner]</div>
+            <div class="owner-name">BayleeDogman123</div>
+            <div class="owner-text">
+              BayleeDogman123 is co-owner of DarkShadow SMP and has helped continue the project alongside Vmp. Together, both owners now run the realm, work on upcoming seasons, and keep DarkShadow SMP moving forward.
+            </div>
+          </div>
+          <img class="owner-image" src="images/logo2.png" alt="DarkShadow SMP logo representing BayleeDogman123">
         </div>
       </div>
     </section>
