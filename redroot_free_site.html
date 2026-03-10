@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedRoot SMP</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827cc;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #22c55e;
+      --accent2: #f59e0b;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #0b1120, #111827 40%, #0f172a 100%);
+      color: var(--text);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner, .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: white;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 14px;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      margin: 0 0 12px;
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      width: min(700px, 100%);
+      margin: 0 auto 24px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(80px, 140px));
+      gap: 14px;
+      justify-content: center;
+      margin: 28px 0;
+    }
+
+    .count-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .count-number {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: white;
+    }
+
+    .count-label {
+      color: var(--muted);
+      margin-top: 6px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid var(--border);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #052e16;
+      border-color: transparent;
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .section {
+      padding: 28px 0 18px;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .section p.lead {
+      color: var(--muted);
+      margin-top: 0;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .img-placeholder {
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #14532d, #1e293b);
+      color: #d1fae5;
+      font-weight: 700;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+    }
+
+    .timeline-item strong { color: white; }
+    .muted { color: var(--muted); }
+
+    footer {
+      padding: 34px 0 50px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .countdown { grid-template-columns: repeat(2, minmax(80px, 140px)); }
+    }
+
+    @media (max-width: 560px) {
+      .nav-inner { flex-direction: column; align-items: flex-start; }
+      .nav-links { display: flex; flex-wrap: wrap; gap: 8px 12px; }
+      .nav a { margin-left: 0; }
+      .countdown { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">RedRoot <span>SMP</span></div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#story">Where It Started</a>
+        <a href="#now">Where We Are Now</a>
+        <a href="#gallery">Gallery</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="badge">Java + Bedrock Crossplay Survival Server</div>
+        <h1>Season Launch Countdown</h1>
+        <p class="subtitle">
+          Welcome to RedRoot SMP. A fresh season is nearly here — new beginnings, new progress, and a brand new chapter for the server.
+        </p>
+
+        <div class="countdown" aria-label="Countdown to launch">
+          <div class="count-box"><div class="count-number" id="days">00</div><div class="count-label">Days</div></div>
+          <div class="count-box"><div class="count-number" id="hours">00</div><div class="count-label">Hours</div></div>
+          <div class="count-box"><div class="count-number" id="minutes">00</div><div class="count-label">Minutes</div></div>
+          <div class="count-box"><div class="count-number" id="seconds">00</div><div class="count-label">Seconds</div></div>
+        </div>
+
+        <p class="muted" id="launchText">Set your season release date in the code below.</p>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="https://discord.gg/yourinvite" target="_blank" rel="noreferrer">Join the Discord</a>
+          <a class="btn btn-secondary" href="#story">Read the Story</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="container">
+        <h2>Where It Started</h2>
+        <p class="lead">
+          Tell the story of how RedRoot began. You can talk about when the realm/server first launched, why you made it, and what the original vision was.
+        </p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>First idea</strong><br>
+            Add a short paragraph here about how the idea for RedRoot SMP started.
+          </div>
+          <div class="timeline-item">
+            <strong>Early version</strong><br>
+            Add what the first version was like — realm, survival, factions, community goals, or anything else.
+          </div>
+          <div class="timeline-item">
+            <strong>Big changes</strong><br>
+            Add the important turning points that led to the current season.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="now">
+      <div class="container">
+        <h2>Where We Are Now</h2>
+        <p class="lead">
+          Use this section to show what RedRoot SMP is like now — kits, economy, teams, warzone, crossplay support, or anything you want new players to know.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <div class="card-body">
+              <h3>Crossplay</h3>
+              <p class="muted">Java + Bedrock support so more players can join together.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h3>Progression</h3>
+              <p class="muted">Show off your kits, economy, ranks, crates, or custom features here.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h3>New Season</h3>
+              <p class="muted">Use this card to explain what is changing in the upcoming season.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <h2>Gallery</h2>
+        <p class="lead">
+          Replace these placeholders with screenshots from your server, builds, spawn, warzone, or old realm moments.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <div class="img-placeholder">Upload a spawn screenshot here</div>
+            <div class="card-body"><strong>Spawn</strong><p class="muted">A quick caption about this image.</p></div>
+          </div>
+          <div class="card">
+            <div class="img-placeholder">Upload a community screenshot here</div>
+            <div class="card-body"><strong>Community</strong><p class="muted">Show players, events, or PvP moments.</p></div>
+          </div>
+          <div class="card">
+            <div class="img-placeholder">Upload a teaser screenshot here</div>
+            <div class="card-body"><strong>Season Teaser</strong><p class="muted">Preview something from the upcoming season.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    RedRoot SMP — built for free and ready to deploy.
+  </footer>
+
+  <script>
+    // CHANGE THIS DATE TO YOUR REAL RELEASE DATE/TIME
+    const launchDate = new Date('2026-03-31T18:00:00');
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const launchText = document.getElementById('launchText');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = launchDate - now;
+
+      if (diff <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        launchText.textContent = 'The new season is live now.';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+      launchText.textContent = 'Countdown to the next RedRoot SMP season.';
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
