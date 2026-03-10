@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RedRoot SMP</title>
+  <title>DarkShadow SMP</title>
   <style>
     :root {
       --bg: #0f172a;
       --card: #111827cc;
       --text: #e5e7eb;
       --muted: #94a3b8;
-      --accent: #22c55e;
+      --accent: #ef4444;
       --accent2: #f59e0b;
       --border: #334155;
     }
@@ -49,10 +49,19 @@
     .brand {
       font-weight: 800;
       letter-spacing: 0.5px;
-      color: white;
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .brand span { color: var(--accent); }
+    .brand span { color: white; }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
 
     .nav a {
       color: var(--text);
@@ -232,7 +241,10 @@
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <div class="brand">RedRoot <span>SMP</span></div>
+      <div class="brand">
+        <img class="logo" src="images/logo.png" alt="DarkShadow Logo">
+        DarkShadow <span>SMP</span>
+      </div>
       <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#story">Where It Started</a>
@@ -245,10 +257,10 @@
   <main>
     <section class="hero" id="home">
       <div class="container">
-        <div class="badge">Java + Bedrock Crossplay Survival Server</div>
-        <h1>Season Launch Countdown</h1>
+        <div class="badge">Minecraft Bedrock Realm Community</div>
+        <h1>DarkShadow SMP</h1>
         <p class="subtitle">
-          Welcome to RedRoot SMP. A fresh season is nearly here — new beginnings, new progress, and a brand new chapter for the server.
+          Founded by Vmpireghost on November 19th 2023, DarkShadow SMP is a long-running Minecraft Bedrock realm with multiple seasons, custom spawns, community history, and a brand new chapter on the way.
         </p>
 
         <div class="countdown" aria-label="Countdown to launch">
@@ -271,20 +283,17 @@
       <div class="container">
         <h2>Where It Started</h2>
         <p class="lead">
-          Tell the story of how RedRoot began. You can talk about when the realm/server first launched, why you made it, and what the original vision was.
+          DarkShadow SMP was founded on November 19th 2023 by Vmpireghost. Since then, the realm has gone through multiple seasons, different spawn styles, development phases, and community moments that helped shape what it is today.
         </p>
         <div class="timeline">
           <div class="timeline-item">
-            <strong>First idea</strong><br>
-            Add a short paragraph here about how the idea for RedRoot SMP started.
+            <strong>November 19th 2023</strong><br>DarkShadow SMP was founded by Vmpireghost as a Minecraft Bedrock realm and community project.
           </div>
           <div class="timeline-item">
-            <strong>Early version</strong><br>
-            Add what the first version was like — realm, survival, factions, community goals, or anything else.
+            <strong>Older Seasons</strong><br>Over time, DarkShadow SMP featured different seasons, big spawn builds, community hangouts, and constant changes as the realm evolved.
           </div>
           <div class="timeline-item">
-            <strong>Big changes</strong><br>
-            Add the important turning points that led to the current season.
+            <strong>Recent Era</strong><br>The most recently released season had to close because of bugs and busy lives, but a brand new season is now being prepared.
           </div>
         </div>
       </div>
@@ -294,25 +303,25 @@
       <div class="container">
         <h2>Where We Are Now</h2>
         <p class="lead">
-          Use this section to show what RedRoot SMP is like now — kits, economy, teams, warzone, crossplay support, or anything you want new players to know.
+          DarkShadow SMP is currently focused on the next season. The realm has a history of custom spawns, active community moments, and different themed builds across its seasons.
         </p>
         <div class="grid">
           <div class="card">
             <div class="card-body">
-              <h3>Crossplay</h3>
-              <p class="muted">Java + Bedrock support so more players can join together.</p>
+              <h3>Founded</h3>
+              <p class="muted">Founded on November 19th 2023 and shaped through multiple seasons.</p>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
-              <h3>Progression</h3>
-              <p class="muted">Show off your kits, economy, ranks, crates, or custom features here.</p>
+              <h3>Community</h3>
+              <p class="muted">DarkShadow SMP has had real player activity, community memories, and evolving builds.</p>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
-              <h3>New Season</h3>
-              <p class="muted">Use this card to explain what is changing in the upcoming season.</p>
+              <h3>Upcoming Season</h3>
+              <p class="muted">A brand new season is being prepared after the previous one closed due to bugs and busy lives.</p>
             </div>
           </div>
         </div>
@@ -344,7 +353,7 @@
   </main>
 
   <footer>
-    RedRoot SMP — built for free and ready to deploy.
+    DarkShadow SMP — Founded by Vmpireghost9 (Vmp).
   </footer>
 
   <script>
@@ -379,7 +388,7 @@
       hoursEl.textContent = String(hours).padStart(2, '0');
       minutesEl.textContent = String(minutes).padStart(2, '0');
       secondsEl.textContent = String(seconds).padStart(2, '0');
-      launchText.textContent = 'Countdown to the next RedRoot SMP season.';
+      launchText.textContent = 'Countdown to the next DarkShadow SMP season.';
     }
 
     updateCountdown();
