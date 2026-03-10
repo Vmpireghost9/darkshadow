@@ -21,9 +21,15 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(239, 68, 68, 0.16), transparent 0%, transparent 22%), radial-gradient(circle at 20% 20%, rgba(239, 68, 68, 0.08), transparent 18%), linear-gradient(180deg, #05070d, #0a0f1a 35%, #0b0f18 100%);
+      background: radial-gradient(circle at top, rgba(239, 68, 68, 0.12), transparent 28%), linear-gradient(180deg, #05070d, #0a0f1a 35%, #0b0f18 100%);
       color: var(--text);
-      transition: background 0.12s linear;
+    }
+
+    /* particle canvas background */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
     }
 
     .nav {
@@ -271,6 +277,7 @@
   </style>
 </head>
 <body>
+  <canvas id="bg-canvas"></canvas>
   <nav class="nav">
     <div class="nav-inner">
       <div class="brand">
@@ -383,12 +390,7 @@
     const secondsEl = document.getElementById('seconds');
     const launchText = document.getElementById('launchText');
 
-    document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-      document.documentElement.style.setProperty('--mouse-x', `${x}%`);
-      document.documentElement.style.setProperty('--mouse-y', `${y}%`);
-    });
+    
 
     function updateCountdown() {
       const now = new Date();
@@ -417,6 +419,67 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    /* simple red particle network background */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const particles = [];
+    const COUNT = 70;
+
+    for (let i = 0; i < COUNT; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(255,40,40,0.9)';
+        ctx.fill();
+      }
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = 'rgba(255,0,0,0.25)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
   </script>
 </body>
 </html>
